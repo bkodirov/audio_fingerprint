@@ -28,6 +28,13 @@ dependencies {
     compile "net.sourceforge.jtransforms:jtransforms:2.4.0"
     compile "com.github.sh0nk:matplotlib4j:0.4.0"
 
+    // https://mvnrepository.com/artifact/com.github.wendykierp/JTransforms
+    compile group: 'com.github.wendykierp', name: 'JTransforms', version: '3.0'
+
+    // https://mvnrepository.com/artifact/com.github.fracpete/musicg
+    compile group: 'com.github.fracpete', name: 'musicg', version: '1.4.2.2'
+
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
