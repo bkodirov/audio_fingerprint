@@ -1,14 +1,15 @@
 package view;
 
 import org.tritonus.sampled.convert.PCM2PCMConversionProvider;
-import spectrum.MisucgSpectrum;
 import sun.misc.IOUtils;
+import utils.ByteUtils;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import java.util.Arrays;
 
 public class AudioRecognizerWindow extends JFrame {
 
@@ -183,9 +184,13 @@ public class AudioRecognizerWindow extends JFrame {
 //            MisucgSpectrum spectrum = new MisucgSpectrum();
 //            spectrum.show(audioBytes);
 
-            System.out.println("spectrum button clicked");
-//            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(audioBytes);
-//            amplitudeView.setVisible(true);
+            System.out.println("byte array -> "+ Arrays.toString(audioBytes));
+            short[] pcm = ByteUtils.INSTANCE.byteArrayToShortArrayLE(audioBytes);
+            System.out.println("PCM array -> "+ Arrays.toString(pcm));
+            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(pcm);
+//            float[] dtmfFloat = DTMF.generateDTMFTone('1');
+//            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(ByteUtils.INSTANCE.scalePcm(dtmfFloat, 16));
+            amplitudeView.setVisible(true);
         });
         fileTextField = new JTextField(20);
         fileTextField.setText("/Users/bekakodirov/projects/pyplayer/examples/long/output/test.wav");
