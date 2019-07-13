@@ -8,7 +8,6 @@ import java.awt.Graphics2D
 class AudioTimeFrequencyWindow(private val pcm: ShortArray) : javax.swing.JFrame()  {
     private val windowWidth = 1000
     private val windowHeight = 400
-    private val maxHeight = 65536
 
     private var maxAmplitude: Short = Short.MIN_VALUE
 
@@ -26,7 +25,6 @@ class AudioTimeFrequencyWindow(private val pcm: ShortArray) : javax.swing.JFrame
         pcm.forEachIndexed { index, amplitude ->
             val heightPercentage = amplitude / maxAmplitude.toDouble()
             val adjustedHeight = (heightPercentage * windowHeight).toInt()
-//            println("Ampl = $amplitude, adjusted  = $adjustedHeight")
             g2.drawRect(index*windowWidth/pcm.size, ((windowHeight - adjustedHeight)/2), 1, adjustedHeight)
         }
     }

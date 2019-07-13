@@ -1,6 +1,8 @@
 package view;
 
+import fingerprint.DTMF;
 import org.tritonus.sampled.convert.PCM2PCMConversionProvider;
+import spectrum.MisucgSpectrum;
 import sun.misc.IOUtils;
 import utils.ByteUtils;
 
@@ -181,15 +183,15 @@ public class AudioRecognizerWindow extends JFrame {
                 e1.printStackTrace();
                 return;
             }
-//            MisucgSpectrum spectrum = new MisucgSpectrum();
-//            spectrum.show(audioBytes);
+            MisucgSpectrum spectrum = new MisucgSpectrum();
+            spectrum.show(audioBytes);
 
             System.out.println("byte array -> "+ Arrays.toString(audioBytes));
             short[] pcm = ByteUtils.INSTANCE.byteArrayToShortArrayLE(audioBytes);
             System.out.println("PCM array -> "+ Arrays.toString(pcm));
-            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(pcm);
-//            float[] dtmfFloat = DTMF.generateDTMFTone('1');
-//            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(ByteUtils.INSTANCE.scalePcm(dtmfFloat, 16));
+//            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(pcm);
+            float[] dtmfFloat = DTMF.generateDTMFTone('1');
+            AudioTimeFrequencyWindow amplitudeView = new AudioTimeFrequencyWindow(ByteUtils.INSTANCE.scalePcm(dtmfFloat, 16));
             amplitudeView.setVisible(true);
         });
         fileTextField = new JTextField(20);

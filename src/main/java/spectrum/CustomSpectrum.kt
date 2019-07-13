@@ -1,0 +1,4 @@
+package spectrum
+
+class CustomSpectrum {
+}
